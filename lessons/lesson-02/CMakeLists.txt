@@ -4,5 +4,6 @@ project(lesson-02)
 # compile for c++11:
 set (CMAKE_CXX_STANDARD 11)
 
-# generate the executable for the insertionSort
+# generate the executables:
 add_executable(vectorBasics	src/vectorBasics.cpp)
+add_executable(readBoardFile src/readBoardFile.cpp)
