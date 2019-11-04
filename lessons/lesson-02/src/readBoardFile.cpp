@@ -9,25 +9,34 @@
 // 3. Evaluate the std::ifstream object as a bool to ensure that the stream creation did not fail.
 // 4. Use a while loop with getline to write file lines to a string.
 
-std::vector<int> ParseLine(std::string sLine)
+enum class State {kEmpty, kObstacle};
+
+std::vector<State> ParseLine(std::string sLine)
 {
     std::istringstream my_stream(sLine);
     int n;
     char c;
-    std::vector<int> v;
+    std::vector<State> s;
 
 
     while(my_stream >> n >> c)
     {
-        v.push_back(n);
+        if(n == 0)
+        {
+            s.push_back(State::kEmpty);
+        }
+        else
+        {
+            s.push_back(State::kObstacle);
+        }
     }
 
-    return v;
+    return s;
 }
 
-std::vector<std::vector<int>> ReadBoardFile(std::string file_name)
+std::vector<std::vector<State>> ReadBoardFile(std::string file_name)
 {
-    std::vector<std::vector<int>> board{};
+    std::vector<std::vector<State>> board{};
     std::ifstream file_input;
     file_input.open(file_name);
 
@@ -37,7 +46,7 @@ std::vector<std::vector<int>> ReadBoardFile(std::string file_name)
 
         while (std::getline(file_input, line))
         {
-            std::vector<int> iLine = ParseLine(line);
+            std::vector<State> iLine = ParseLine(line);
             board.push_back(iLine);
         }
     }
@@ -50,13 +59,22 @@ std::vector<std::vector<int>> ReadBoardFile(std::string file_name)
     return board;
 }
 
-void PrintBoard(const std::vector<std::vector<int>> board)
+std::string CellString(State state)
+{
+    switch (state)
+    {
+        case State::kObstacle: return "⛰️   ";   
+        default: return "0   ";
+    }
+}
+
+void PrintBoard(const std::vector<std::vector<State>> board)
 {
     for (int i = 0; i < board.size(); i++)
     {
         for (int j = 0; j < board[i].size(); j++)
         {
-            std::cout << board[i][j];
+            std::cout << CellString(board[i][j]);
         }
         std::cout << "\n";
     }
