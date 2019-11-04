@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <fstream>
 
@@ -17,7 +18,8 @@ void ReadBoardFile(std::string file_name)
     {
         std::string line;
 
-        std::cout << "chegou aqui..." << "\n";
+        std::cout << "chegou aqui..."
+                  << "\n";
 
         while (std::getline(file_input, line))
         {
@@ -26,7 +28,8 @@ void ReadBoardFile(std::string file_name)
     }
     else
     {
-        std::cout << "Error trying to open the file" << "\n";
+        std::cout << "Error trying to open the file"
+                  << "\n";
     }
 }
 
@@ -42,10 +45,26 @@ void PrintBoard(const std::vector<std::vector<int>> board)
     }
 }
 
+std::vector<int> ParseLine(std::string sLine)
+{
+    std::istringstream my_stream(sLine);
+    int n;
+    char c;
+    std::vector<int> v;
+
+
+    while(my_stream >> n >> c)
+    {
+        v.push_back(n);
+    }
+
+    return v;
+}
+
 int main()
 {
 
     ReadBoardFile("../src/board.txt");
-    //PrintBoard(board);
+    // PrintBoard(board);
     return 0;
 }
