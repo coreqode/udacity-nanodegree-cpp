@@ -7,7 +7,8 @@
 enum class State
 {
     kEmpty,
-    kObstacle
+    kObstacle,
+    kClosed
 };
 
 std::vector<State> ParseLine(std::string line)
@@ -51,6 +52,13 @@ std::vector<std::vector<State>> ReadBoardFile(std::string path)
 int Heuristic(int x1, int y1, int x2, int y2)
 {
     return std::abs(x2-x1)+ std::abs(y2-y1);
+}
+
+void AddToOpen(int x, int y, int g, int h, std::vector<std::vector<int>>& openNodes, std::vector<std::vector<State>>& grid)
+{
+    std::vector<int> params{x,y,g,h};
+    openNodes.push_back(params);
+    grid[x][y] = State::kClosed;
 }
 
 std::vector<std::vector<State>> Search(std::vector<std::vector<State>> board, std::vector<int> init,  std::vector<int> goal)
