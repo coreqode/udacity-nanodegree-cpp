@@ -48,7 +48,17 @@ std::vector<std::vector<State>> ReadBoardFile(std::string path)
     return board;
 }
 
-// TODO: Write the Search function stub her
+int Heuristic(int x1, int y1, int x2, int y2)
+{
+    return std::abs(x2-x1)+ std::abs(y2-y1);
+}
+
+std::vector<std::vector<State>> Search(std::vector<std::vector<State>> board, std::vector<int> init,  std::vector<int> goal)
+{
+    std::vector<std::vector<State>> solution{};
+    std::cout << "No path found" << "\n";
+    return solution;
+}
 
 std::string CellString(State cell)
 {
@@ -78,7 +88,8 @@ int main()
     std::vector<int> goal{4,5};
 
     auto board = ReadBoardFile("../src/board.txt");
-    PrintBoard(board);
+    auto solution = Search(board, init, goal);
+    PrintBoard(solution);
 
     return 0;
 }
