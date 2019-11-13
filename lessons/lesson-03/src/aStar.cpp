@@ -18,7 +18,9 @@ enum class State
     kEmpty,
     kObstacle,
     kClosed,
-    kPath
+    kPath,
+    kStart,
+    kFinish
 };
 
 // directional deltas
@@ -145,8 +147,12 @@ std::vector<std::vector<State>> Search(std::vector<std::vector<State>> board, in
 
         if (x == goal[0] && y == goal[1])
         {
+            board[init[0]][init[1]] = State::kStart;
+            board[goal[0]][goal[1]] = State::kFinish;
             return board;
         }
+
+        ExpandNeighbors(current, goal, open, board);
     }
 
     std::vector<std::vector<State>> solution{};
@@ -161,8 +167,16 @@ std::string CellString(State cell)
     {
     case State::kObstacle:
         return "⛰️   ";
+    
     case State::kPath:
         return "🚗   ";
+    
+    case State::kStart: 
+    return "🚦   ";
+    
+    case State::kFinish: 
+    return "🏁   ";
+    
     default:
         return "0   ";
     }
