@@ -49,6 +49,14 @@ std::vector<std::vector<State>> ReadBoardFile(std::string path)
     return board;
 }
 
+bool Compare(std::vector<int> node1, std::vector<int> node2)
+{
+    float f1 = node1[2] + node1[3];
+    float f2 = node2[2] + node2[3];
+
+    return f1 > f2;
+}
+
 int Heuristic(int x1, int y1, int x2, int y2)
 {
     return std::abs(x2-x1)+ std::abs(y2-y1);
@@ -63,6 +71,15 @@ void AddToOpen(int x, int y, int g, int h, std::vector<std::vector<int>>& openNo
 
 std::vector<std::vector<State>> Search(std::vector<std::vector<State>> board, std::vector<int> init,  std::vector<int> goal)
 {
+    std::vector<std::vector<int>> open{};
+    
+    int x = init[0];
+    int y = init[1];
+    int g = 0;
+    int h = Heuristic(x, y, goal[0], goal[1]);
+
+    AddToOpen(x, y, g, h, open, board);
+    
     std::vector<std::vector<State>> solution{};
     std::cout << "No path found" << "\n";
     return solution;
