@@ -67,6 +67,21 @@ bool Compare(std::vector<int> node1, std::vector<int> node2)
     return f1 > f2;
 }
 
+bool CheckValidCell(int x, int y, std::vector<std::vector<State>>& grid)
+{
+    bool limit_x = ( x >= 0 && x < grid.size() );
+    bool limit_y = ( y >= 0 && x < grid[0].size() );
+
+    if( limit_x && limit_y)
+    {
+        return grid[x][y] == State::kEmpty;
+    }
+    else
+    {
+        return false;        
+    }
+}
+
 int Heuristic(int x1, int y1, int x2, int y2)
 {
     return std::abs(x2-x1)+ std::abs(y2-y1);
