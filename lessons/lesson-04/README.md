@@ -19,3 +19,9 @@
     When used in a function for pass-by-reference, the reference can be used just as a variable of the same type would be.	When used in a function for pass-by-reference, a pointer must be dereferenced in order to access the underlying object.
 
 ---
+
+## Rule of Thumb
+
+References are generally easier and safer than pointers. As a decent rule of thumb, references should be used in place of pointers when possible.
+
+However, there are times when it is not possible to use references. One example is object initialization. You might like one object to store a reference to another object. However, if the other object is not yet available when the first object is created, then the first object will need to use a pointer, not a reference, since a reference cannot be null. The reference could only be initialized once the other object is created.
