@@ -1,29 +1,50 @@
-// Include iostream for output
-#include <cassert>
 #include <iostream>
+#include <string>
+using std::string;
 
-// Define a simple structure
-struct Date {
-  int day{0};
-  int month{0};
-  int year{0};
+class Vehicle
+{
+public:
+  int wheels = 0;
+  string color = "blue";
+
+  void Print() const
+  {
+    std::cout << "This " << color << " vehicle has " << wheels << " wheels!\n";
+  }
 };
 
-// Define a main function to instantiate and test 
+class Car : public Vehicle
+{
+public:
+  bool sunroof = false;
+};
+
+class Bicycle : protected Vehicle
+{
+public:
+  bool kickstand = true;
+  void Sound(){
+    Print();
+  }
+};
+
+class Scooter : private Vehicle
+{
+public:
+  bool electric = false;
+  void Sound(){
+    Vehicle::Print();
+  }
+};
+
 int main()
 {
-    Date date;
-    
-    // TODO: Initialize date to August 29, 1981
-    date.day = 29;
-    date.month = 8;
-    date.year = 1981;
-    
-    // TEST
-    assert(date.day == 29);
-    assert(date.month == 8);
-    assert(date.year == 1981);
+  Car car;
+  Bicycle bicycle;
+  Scooter scooter;
 
-    // Print the data in the structure
-    std::cout << date.day << "/" << date.month << "/" << date.year << "\n";
-}
+  car.Print();
+  bicycle.Sound();
+  // scooter.Print();
+};
