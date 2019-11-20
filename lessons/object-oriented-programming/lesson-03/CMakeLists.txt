@@ -7,3 +7,4 @@ set (CMAKE_CXX_STANDARD 17)
 # generate the executables:
 add_executable(advancedObjOri	src/advancedObjOri.cpp)
 add_executable(inheritanceExercise src/inheritanceExercise.cpp)
+add_executable(classHierarchyExercise src/classHierarchyExercise.cpp)
