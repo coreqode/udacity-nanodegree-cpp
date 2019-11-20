@@ -17,8 +17,19 @@ public:
 class Car : public Vehicle
 {
 public:
+  static int count;
   bool sunroof = false;
+
+  Car(){
+   this->count++;
+  }
+
+  void CountCars() {
+    std::cout << "Numbers of cars: " << this->count << std::endl;
+  }
 };
+
+int Car::count = 0;
 
 class Bicycle : protected Vehicle
 {
@@ -45,6 +56,12 @@ int main()
   Scooter scooter;
 
   car.Print();
+  car.CountCars();
   bicycle.Sound();
   // scooter.Print();
+
+  Car car2;
+  Car car3;
+
+  car3.CountCars();
 };
