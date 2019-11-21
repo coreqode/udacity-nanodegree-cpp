@@ -12,13 +12,13 @@ public:
 class Cat : public Animal
 {
 public:
-    std::string Talk() const { return "Meow"; }
+    std::string Talk() const override { return "Meow"; }
 };
 
 class Lion : public Cat
 {
 public:
-    std::string Talk() const { return "Roar"; }
+    std::string Talk() const override { return "Roar"; }
 };
 
 int main()
