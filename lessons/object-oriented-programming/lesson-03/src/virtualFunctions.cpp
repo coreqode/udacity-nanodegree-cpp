@@ -6,9 +6,10 @@ class Animal
 {
 public:
     virtual std::string Talk() const = 0;
+    // virtual std::string Talk2() const = 0;
 };
 
-class Cat
+class Cat : public Animal
 {
 public:
     std::string Talk() const { return "Meow"; }
@@ -28,6 +29,9 @@ int main()
     std::cout << cat.Talk() << std::endl;
     std::cout << lion.Talk() << std::endl;
 
+    Animal* animal = new Cat();
+    std::cout << animal->Talk() << std::endl;
+    
 
     return 0;
 }
