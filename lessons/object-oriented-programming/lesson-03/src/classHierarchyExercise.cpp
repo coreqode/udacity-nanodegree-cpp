@@ -8,7 +8,7 @@ class Vehicle
 // TODO: Derive Car from Vehicle
 class Car : public Vehicle
 {
-  public: 
+public:
   int seats{4};
   int wheels{4};
 };
